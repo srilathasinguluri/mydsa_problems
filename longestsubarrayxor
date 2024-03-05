@@ -1,0 +1,28 @@
+COUNT NUMBER OF  SUBARRAY WITH GIVEN XOR K
+
+***********************JAVA SOLUTION*********************************
+import java.util.HashMap;
+public class Solution {
+    public static int subarraysWithSumK(int []a, int b) {
+        // Write your code here
+        int n=a.length;
+        int xr=0;
+        int cnt=0;
+        HashMap<Integer,Integer> mapp=new HashMap<>();
+        mapp.put(xr,1);
+        for(int i=0;i<n;i++){
+            xr=xr^a[i];
+            int x=xr^b;
+            if(mapp.containsKey(x)){
+              cnt+=mapp.get(x);
+            }
+            if(mapp.containsKey(xr)){
+                mapp.put(xr,mapp.get(xr)+1);
+            }
+            else{
+                mapp.put(xr,1);
+            }
+        }
+        return cnt;
+    }
+}
